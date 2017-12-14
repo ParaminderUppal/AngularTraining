@@ -1,0 +1,46 @@
+<div class="form-group">
+  <fieldset>
+    <legend>Controller Example</legend>
+    <div class="col-md-12" ng-controller="ContactController">
+        <form>
+            <div class="col-md-12">
+                <label >Name</label>
+                <input class="col-md-6 form-control" type="text" name="name" ng-model="newcontact.name"/>
+            </div>
+            <div class="col-md-12">
+                <label >Email</label>
+                <input class="col-md-6 form-control"  type="text" name="email" ng-model="newcontact.email"/>
+            </div>
+            <div class="col-md-12">
+                <label >Phone</label>
+                <input class="col-md-6 form-control"  type="text" name="phone" ng-model="newcontact.phone"/>
+            </div>
+            <br/>
+            <input type="hidden" ng-model="newcontact.id" />
+            <input class="btn btn-primary" type="button" value="Save" ng-click="saveContact()" />
+        </form>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contact in contacts">
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>
+                        <a ng-click="edit(contact.id)">edit</a> |
+                        <a ng-click="delete(contact.id)">delete</a>
+                    </td>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+  </fieldset>
+</div>

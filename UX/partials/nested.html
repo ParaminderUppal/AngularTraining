@@ -1,0 +1,16 @@
+<div class="form-group">
+  	<fieldset>
+    	<legend>Nested Controller</legend>
+		<div class="col-md-12">
+			<div ng-controller="CarController" style="border:1px solid; margin:10px;">
+				My name is {{ name }} and I am a {{ type }}
+				<div ng-controller="BMWController" style="border:1px solid; margin:10px;">
+					My name is {{ name }} and I am a {{ type }}
+					<div ng-controller="BMWMotorcycleController" style="border:1px solid; margin:10px;">
+						My name is {{ name }} and I am a {{ type }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>

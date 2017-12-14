@@ -1,0 +1,22 @@
+<div class="form-group">
+  <fieldset>
+    <legend>Controller Example</legend>
+    <div id="ctrl-exmpl" class="col-md-12" ng-controller="SettingsController2">
+      <label>Name: <input type="text" ng-model="name"/></label>
+      <button ng-click="greet()">greet</button><br/>
+      Contact:
+      <ul>
+        <li ng-repeat="contact in contacts">
+          <select ng-model="contact.type" id="select_{{$index}}">
+             <option>phone</option>
+             <option>email</option>
+          </select>
+          <input type="text" ng-model="contact.value" aria-labelledby="select_{{$index}}" />
+          <button ng-click="clearContact(contact)">clear</button>
+          <button ng-click="removeContact(contact)">X</button>
+        </li>
+        <li>[ <button ng-click="addContact()">add</button> ]</li>
+     </ul>
+    </div>
+  </fieldset>
+</div>

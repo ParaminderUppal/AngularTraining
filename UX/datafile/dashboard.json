@@ -1,0 +1,157 @@
+{
+    "dashboard":{
+        "columns":[
+            {
+                "field": "state",
+                "checkbox": true
+            }, 
+            {
+                "field": "index",
+                "title": "#",
+                "align": "right",
+                "valign": "bottom",
+                "sortable": true
+            }, 
+            {
+                "field": "id",
+                "title": "Item ID",
+                "align": "center",
+                "valign": "bottom",
+                "sortable": true
+            }, 
+            {
+                "field": "name",
+                "title": "Item Name",
+                "align": "center",
+                "valign": "middle",
+                "sortable": true
+            }, {
+                "field": "workspace",
+                "title": "Workspace",
+                "align": "left",
+                "valign": "top",
+                "sortable": true
+            }, {
+                "field": "flag",
+                "title": "Flag",
+                "align": "center",
+                "valign": "middle",
+                "sortable": true
+            }
+        ],
+        "rows" : [
+            {
+                "index": 0, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 1, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 2, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 3, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 4, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 5, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 6, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 7, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 8, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 9, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 10, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 11, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 12, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 13, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 14, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            },
+            {
+                "index": 15, 
+                "id": "row 0", 
+                "name": "GOOG0", 
+                "flagImage": "", 
+                "workspace": "Workspace 1"
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+<div class="form-group" ng-controller="ListCtrl">
+	<fieldset>
+		<legend>Routing</legend>
+		<div>
+			<h1>Menu</h1>
+		    <hr>
+		    <ul>
+		        <li ng-repeat="item in items">
+		        	<a ng-href="/detail/{{item.id}}">{{item.title}}</a>
+		        </li>
+		    </ul>
+		</div>
+	</fieldset>
+</div>
+
+
+
+
+
+ 

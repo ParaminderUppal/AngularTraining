@@ -1,0 +1,14 @@
+<div class="form-group">
+  <fieldset>
+    <legend>Resolving Scope Issue</legend>
+	<div ng-controller="Customers as vm">
+	  <h1>{{vm.data.title}}</h1>
+	  <article >
+	    <h2></h2>
+	    <ul ng-repeat="c in vm.data.names">
+	      <li ng-click="vm.greet(c.name)">{{c.name}}</li>
+	    </ul>
+	  </article>
+	</div>
+  </fieldset>
+</div>

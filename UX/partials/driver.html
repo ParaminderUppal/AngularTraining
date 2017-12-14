@@ -1,0 +1,30 @@
+<div class="col-lg-12">
+    <div id="driverToolbar">
+        <div class="form-inline" role="form">
+            <div class="form-group">
+                <span>Driver ID: </span>
+                <input class="form-control" type="text" ng-model="filterDriverID" />
+                <button class="btn btn-default btn-sm credit-btton" ng-click="filterTable()">Go</button>
+            </div>
+        </div>
+    </div>
+    <table id="table" class="credit-table" bs-table-control="currentDashboard.bsTableControl"></table>
+</div>
+<div class="col-lg-12" ng-show="showAction">
+    <div class="col-lg-1 credit-marginLG">
+        <label class="credit-filter">Order Status:</label>
+    </div>
+    <div class="col-lg-2 credit-marginNM" >
+        <select class="form-control" ng-model="filterValue" >
+            <option>Order-Delivery Done 1st Attempt</option>
+            <option >Order-Delivery Done 2nd Attempt</option>
+            <option >Order-Delivery Failed Due to Recipient Not In Place</option>
+            <option >Order-Delivery Failed Due to clearance from BM Not Ready</option>
+        </select>
+    </div>
+
+    
+    <div class="col-lg-4">
+      <button ng-show="showAction" type="button" class="btn btn-default credit-button" ng-click="submit1()">Update Order Status</button>
+    </div>
+</div>

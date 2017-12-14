@@ -1,0 +1,46 @@
+<div class="form-group">
+	<fieldset>
+		<legend>Math Operation</legend>
+		<div >
+		  <p>Addition (5 + 5 ): {{ 5 + 5 }}</p>
+		</div>
+
+		<div ng-init="quantity=1;cost=5">
+			<p>Multiplication (quantity * cost): {{ quantity * cost }}</p>
+		</div>
+
+		<div ng-init="quantity=1;cost=5">
+			<p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>JSON Object</legend>
+		<div ng-init="firstName='John';lastName='Doe'">
+			<p>The name is {{ firstName + " " + lastName }}</p>
+		</div>
+
+		<div ng-init="person={firstName:'John',lastName:'Doe'}">
+			<p>JSON - The name is {{ person.lastName }}</p>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Arrays</legend>
+		<div ng-init="points=[1,15,19,2,40]">
+			<p>Arrays - {{ points[2] }}</p>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>All</legend>
+		<div ng-init="quantity=1;cost=30;
+			student={firstname:'Mahesh',lastname:'Parashar',rollno:101};
+			marks=[80,90,75,73,60]">
+			<p>Hello {{student.firstname + " " + student.lastname}}!</p>
+			<p>Expense on Books : {{cost * quantity}} Rs</p>
+			<p>Roll No: {{student.rollno}}</p>
+			<p>Marks(Math): {{marks[3]}}</p>
+		</div>
+	</fieldset>
+</div>

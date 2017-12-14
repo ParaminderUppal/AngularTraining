@@ -1,0 +1,135 @@
+<div class="form-group">
+	<fieldset>
+		<legend>Date Filter</legend>
+		<div class="row">
+			<div class="col-md-6">
+				<p>Date = {{ today | date : "dd.MM.y" }}</p>
+			</div>
+
+			<div class="col-md-6">
+				Date = {{ today | date : "fullDate" }}
+			</div>
+
+			<div class="col-md-6">
+				Date = {{ today | date:'yyyy-MM-dd HH:mm:ss Z' }}
+			</div>
+
+			<div class="col-md-6">
+				Date = {{ today | date:"MM/dd/yyyy 'at' h:mma"}}
+			</div>
+	    </div>
+ 	</fieldset>
+
+ 	<fieldset>
+		<legend>Order By</legend>
+ 		<div ng-controller="ExampleController">
+		  <pre>Sort by = {{propertyName}}; reverse = {{reverse}}</pre>
+		  <hr/>
+		  <button ng-click="propertyName = null; reverse = false">Set to unsorted</button>
+		  <hr/>
+		  <table class="friends">
+		    <tr>
+		      <th>
+		        <button ng-click="sortBy('name')">Name</button>
+		        <span class="sortorder" ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+		      </th>
+		      <th>
+		        <button ng-click="sortBy('phone')">Phone Number</button>
+		        <span class="sortorder" ng-show="propertyName === 'phone'" ng-class="{reverse: reverse}"></span>
+		      </th>
+		      <th>
+		        <button ng-click="sortBy('age')">Age</button>
+		        <span class="sortorder" ng-show="propertyName === 'age'" ng-class="{reverse: reverse}"></span>
+		      </th>
+		    </tr>
+		    <tr ng-repeat="friend in friends | orderBy:propertyName:reverse">
+		      <td>{{friend.name}}</td>
+		      <td>{{friend.phone}}</td>
+		      <td>{{friend.age}}</td>
+		    </tr>
+		  </table>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Limit to</legend>
+		<div ng-init = "data = {numbers : [1,2,3,4,5,6,7,8,9],
+      		letters : 'abcdefghi',
+          	longNumber : 2345432342,
+      		numLimit : 3,
+      		letterLimit : 3,
+      		longNumberLimit : 3}">
+			  <label>
+			     Limit {{data.numbers}} to:
+			     <input type="number" step="1" ng-model="data.numLimit">
+			  </label>
+			  <p>Output numbers: {{ data.numbers | limitTo:data.numLimit }}</p>
+			  <label>
+			     Limit {{data.letters}} to:
+			     <input type="number" step="1" ng-model="data.letterLimit">
+			  </label>
+			  <p>Output letters: {{ data.letters | limitTo:data.letterLimit }}</p>
+			  <label>
+			     Limit {{data.longNumber}} to:
+			     <input type="number" step="1" ng-model="data.longNumberLimit">
+			  </label>
+			  <p>Output long number: {{ data.longNumber | limitTo:data.longNumberLimit }}</p>
+		</div>
+	</fieldset>
+
+
+	<fieldset>
+		<legend>Filter</legend>
+
+ 		<div ng-init="friends = [{name:'John', phone:'555-1276'},
+                         {name:'Mary', phone:'800-BIG-MARY'},
+                         {name:'Mike', phone:'555-4321'},
+                         {name:'Adam', phone:'555-5678'},
+                         {name:'Julie', phone:'555-8765'},
+                         {name:'Juliette', phone:'555-5678'}]">
+
+			<label>Search: <input ng-model="searchText"></label>
+			<table id="searchTextResults">
+			  <tr><th>Name</th><th>Phone</th></tr>
+			  <tr ng-repeat="friend in friends | filter:searchText">
+			    <td>{{friend.name}}</td>
+			    <td>{{friend.phone}}</td>
+			  </tr>
+			</table>
+			<hr>
+			<label>Any: <input ng-model="search.$"></label> <br>
+			<label>Name only <input ng-model="search.name"></label><br>
+			<label>Phone only <input ng-model="search.phone"></label><br>
+			<label>Equality <input type="checkbox" ng-model="strict"></label><br>
+			<table id="searchObjResults">
+			  <tr><th>Name</th><th>Phone</th></tr>
+			  <tr ng-repeat="friendObj in friends | filter:search:strict">
+			    <td>{{friendObj.name}}</td>
+			    <td>{{friendObj.phone}}</td>
+			  </tr>
+			</table>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Custom Filter</legend>
+
+ 		<div ng-init="personNames = [
+        'Jani',
+        'Carl',
+        'Margareth',
+        'Hege',
+        'Joe',
+        'Gustav',
+        'Birgit',
+        'Mary',
+        'Kai'
+        ]">
+
+			<ul>
+				<li ng-repeat="x in personNames">
+				    {{x | myFormat}}
+				</li>
+			</ul>
+		</div>
+	</fieldset>
+</div>

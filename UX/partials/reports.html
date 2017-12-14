@@ -1,0 +1,163 @@
+<div class="col-lg-12" ng-controller="ReportsCtrl"  style="padding-top:100px">
+	<p class="section-headline padding col-lg-12 ng-binding">View Reports</p>
+	<div class="clear"></div>
+	<form name="reportForm">
+	
+		<fieldset class="scheduler-border">
+		<legend class="scheduler-border ng-binding">Report Criteria</legend>
+		
+			
+			
+		<div class="padding-right-20a">
+			<div id="{{section.id}}" ng-repeat="section in metaData.uiform.mainsection.section" class="col-md-12 col-lg-12"  ng-if="metaData.uiform.mainsection.type != 'summary'" >
+			
+			<div ng-repeat="form in section.content" ng-if="form.id"
+							class="col-lg-6 form-group type-{{form.type}}" 
+							ng-class="{width100p: (form.type == 'horizontalline' || form.type == 'addressgroup' || form.type == 'checkbox' || form.type == 'question' ), nonmandatory : (form.required == 'N'), hidefield: mandatoryIndicator }"
+							visible="{{form.visible}}" >
+							<div ng-switch on="form.type" class="">
+							
+							
+								<div class="" ng-switch-when="dropdown">
+									<div class="control-label lb-color col-lg-5" require-star='{{ form.required }}'>
+										<div>{{ form.label }}</div>
+									</div>
+									<div class="col-lg-5">
+									 
+										<select id="{{form.id}}" name="{{form.id}}" class="form-control " ng-required="{{ form.required }}" ng-model="data[form.id]" retrieve-data 
+										ng-disabled="form.disable == 'true'" ng-change="dropDownChanged( '{{form.id}}' , '{{ form.action.event }}', '{{ form.action.eventid }}' )">										
+											<option  ng-repeat="option in form.options" value=" {{option.id}}~{{option.name}}" >{{option.name}}</option>
+											<option  ng-if="form.required == 'N' && form.options.length>0" value="None">None</option>
+										</select>
+																	
+									</div>
+								</div>
+								<!-- Date -->
+								<div class="" ng-switch-when="date" ng-if="form.id!='DATE_TO'">
+									<div class="control-label lb-color col-lg-5" require-star='{{ form.required }}' >
+										<div>{{ form.label }}</div>
+									</div>
+									<div class="col-lg-5" ng-controller="DateCtrl"  >
+									  	<div class="input-group" >
+									      <input id="{{form.id}}" type="text" class="form-control" datepicker-popup="{{format}}"  max-date="maxDate" 
+									      			ng-model="data[form.id]" is-open="opened" ng-disabled="form.disable == 'true'" 
+									      			ng-required="{{form.required}}" ng-blur="clear(form.id)" ng-change="dateChange()"/>							      			
+									      <span class="input-group-btn">
+									        <button type="button" class="btn btn-default" ng-click="open( $event )" ng-disabled="form.disable == 'true'">
+									            <i class="fa fa-calendar"></i>
+									        </button>
+									      </span>
+									    </div>						    				
+									</div>
+									
+								</div>
+								<div class="" ng-switch-when="date" ng-if="form.id=='DATE_TO'">
+									<div class="control-label lb-color col-lg-5" require-star='{{ form.required }}' >
+										<div>{{ form.label }}</div>
+									</div>
+									<div class="col-lg-5" ng-controller="DateCtrl2"  >
+									  	<div class="input-group" >
+									      <input id="{{form.id}}" type="text" class="form-control" datepicker-popup="{{format}}"  max-date="maxDate" min-date="minDate"
+									      			ng-model="data[form.id]" is-open="opened" ng-disabled="form.disable == 'true'" 
+									      			ng-required="{{form.required}}" ng-blur="clear(form.id)" />							      			
+									      <span class="input-group-btn">
+									        <button type="button" class="btn btn-default" ng-click="open( $event )" ng-disabled="form.disable == 'true'">
+									            <i class="fa fa-calendar"></i>
+									        </button>
+									      </span>
+									    </div>						    				
+									</div>
+									
+								</div>
+								
+				
+			</div>
+		
+	</div>
+	</div>
+	</form>
+						<div class="col-lg-12">
+									<div class="col-lg-5"></div>
+									<div class="col-lg-6">
+										
+										
+											
+								<div id='reportsmenu' >
+							<ul>
+					    		<li><button type="button" class=" btn btn-default">Generate Report<i class="fa fa-sort-desc" style="margin-left: 5%"></i>
+					    		</button>
+					     <ul class="dropdown-menu" id="dropdown-menu" style="min-width: 115%;"> 
+					    	 <li ><a ng-click="generateResult('Pdf')" style="width: 115%;"><i class="fa fa-file-pdf-o"></i>
+					     <span class="cssmenu_divider">|</span>Pdf</a>
+					         </li>  
+					     <li><a ng-click="generateResult('Excel')" style="width: 115%;"><i class="fa fa-file-excel-o"></i>
+					      <span class="cssmenu_divider">|</span>Excel</a>
+					     </li> 
+					       <li ><a ng-click="generateResult('Screen')" style="width: 115%;"><i class="fa fa-desktop"></i>
+					       <span class="cssmenu_divider">|</span>Screen</a>
+					     </li>   
+					    </ul>
+					  		 </li> 
+						</ul>
+								</div>  			
+					      
+									 	<a href="javascript:void(0);" ng-click="reportReset()"  class="btn btn-default" style="margin-left: .5%">			
+											<span>Reset</span>
+										</a>
+										<a href="javascript:void(0);" ng-click="reportCancel()" class="btn btn-default">			
+											<span>Cancel</span>
+										</a>
+										 </div>	
+									</div>
+				</div>
+	</fieldset>
+	
+	
+	<!-- ...................... -->
+	
+	
+	<div class="padding-right-20a" ng-show="rowCollection[0]['applicationId']">
+				<fieldset class="scheduler-border">
+					<legend class="scheduler-border ng-binding">Result</legend>
+					<div class="text-right">
+						<pagination total-items="totalItems" align="right" ng-change="pageChanged()" ng-model="currentPage" max-size="maxSize" class="pagination-sm" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+					</div>
+					<div class="text-right">									
+					Per Page <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>5</option><option>10</option><option>20</option><option>50</option></select>
+					</div>
+					<table id="searchResult" st-table="rowCollection" class="table table-striped search-table table-bordered" ng-show="rowCollection[0]['applicationId'] ">
+						<thead>
+						<tr style="color:white;">
+							<th st-sort="getters.applicationId"" style="width:5%;">App ID</th>
+							<th st-sort="getters.applicationId"" style="width:8%;">App Date</th>
+							<th st-sort="firstName" style="width:15%;">First Name</th>
+							<th st-sort="lastName" style="width:15%;">Last Name</th>			
+							<th st-sort="applicantSsn" style="width:15%;">SSN</th>
+							<th st-sort="applicationStatus" style="width:10%;">Status</th>
+							<th st-sort="underrightRemark" style="width:10%;">Comment</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="row in rowCollection.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+							<td>{{row.applicationId}}</td>
+							<td>{{row.creationDate | date:'MM/dd/yyyy'}} </td>
+							<td>{{row.firstName}}</td>
+							<td>{{row.lastName}}</td>			
+							<td>{{row.applicantSsn | ssn}}</td>
+							<td>{{row.applicationStatus | camelcase}}</td>
+							<td>{{row.underrightRemark}}</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="text-right">
+						<pagination total-items="totalItems" ng-change="pageChanged()" align="right" ng-model="currentPage" max-size="maxSize" class="pagination-sm" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+					</div>
+					<div class="text-right">
+					Per Page <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>5</option><option>10</option><option>20</option><option>50</option></select>
+					
+					</div>
+				</fieldset>
+			</div>
+</div>
+
+	

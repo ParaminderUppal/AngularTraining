@@ -1,0 +1,209 @@
+<div class="form-group">
+	<fieldset>
+		<legend>ng-model</legend>
+		<div class="row">
+			<div class="col-md-6">
+				<label>Name:</label>
+				<input type="text" ng-model="yourName" placeholder="Enter a name here">
+				<h1 class="ng-binding">Hello {{yourName}}!</h1>
+			</div>
+
+			<div class="col-md-6" ng-init="myCol='lightblue'">
+				Handling CSS (Two-way Binding):<input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+			</div>
+
+			<div class="col-md-6" ng-init="myCol1='lightblue'">
+				Handling CSS (One-way Binding):<input style="background-color:{{::myCol1}}" ng-model="myCol1" value="{{myCol1}}">
+			</div>
+
+			<div class="col-md-6">
+				Color on Invalid: <input ng-model="val" ng-pattern="/^\d+$/" name="anim" class="my-input"
+	         	aria-describedby="inputDescription" />
+	        </div>
+	    </div>
+ 	</fieldset>
+
+ 	<fieldset>
+		<legend>ng-repeat</legend>
+		<div class="row">
+			<div class="col-md-6" ng-init="friends = [
+			    {name:'John', age:25, gender:'boy'},
+			    {name:'Jessie', age:30, gender:'girl'},
+			    {name:'Johanna', age:28, gender:'girl'},
+			    {name:'Joy', age:15, gender:'girl'},
+			    {name:'Mary', age:28, gender:'girl'},
+			    {name:'Peter', age:95, gender:'boy'},
+			    {name:'Sebastian', age:50, gender:'boy'},
+			    {name:'Erika', age:27, gender:'girl'},
+			    {name:'Patrick', age:40, gender:'boy'},
+			    {name:'Samantha', age:60, gender:'girl'}
+			  ]">
+				I have {{friends.length}} friends. They are:
+				
+				<ul class="example-animate-container">
+					<li class="animate-repeat" ng-repeat="friend in friends">
+					  [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
+					</li>
+					<li class="animate-repeat" ng-if="results.length === 0">
+					  <strong>No results found...</strong>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-md-6" ng-app="" ng-init="names=[
+				{name:'Jani',country:'Norway'},
+				{name:'Hege',country:'Sweden'},
+				{name:'Kai',country:'Denmark'}]">
+				Showing List:
+				<ul>
+				  <li ng-repeat="x in names">
+				    {{ x.name + ', ' + x.country }}
+				  </li>
+				</ul>
+			</div>
+		</div>
+ 	</fieldset>
+
+ 	<fieldset>
+		<legend>ng-show</legend>
+ 		Show: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
+		<div class="check-element animate-show-hide" ng-show="checked">
+		  I show up when your checkbox is checked.
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>ng-options for Select</legend>
+		<div class="row">
+	 		<div class="col-md-6" ng-init="names1 = ['Emil', 'Tobias', 'Linus']">
+	 			<p>Select a name:</p>
+				<select ng-model="selectedNames" ng-options="x for x in names1">
+				</select>
+				<br />
+				<h1>You selected: {{selectedNames}}</h1>
+			</div>
+
+			<div class="col-md-6" ng-init="cars = [
+		        {model : 'Ford Mustang', color : 'red'},
+		        {model : 'Fiat 500', color : 'white'},
+		        {model : 'Volvo XC90', color : 'black'}
+		    ]">
+				<p>Select a car:</p>
+				<select ng-model="selectedCar">
+					<option ng-repeat="x in cars" value="{{x.model}}">{{x.model}}</option>
+				</select>
+				<h1>You selected: {{selectedCar}}</h1>
+			</div>
+
+			<div class="col-md-6" ng-init="carsObject = {
+		        car01 : 'Ford',
+		        car02 : 'Fiat',
+		        car03 : 'Volvo'
+		    }">
+				<p>Select a car:</p>
+				<select ng-model="selectedCarObject" ng-options="y for (x, y) in carsObject">
+				</select>
+				<h1>You selected: {{selectedCarObject}}</h1>
+			</div>
+
+			<div class="col-md-6" ng-init="cars1 = {
+		        car01 : {brand : 'Ford', model : 'Mustang', color : 'red'},
+		        car02 : {brand : 'Fiat', model : '500', color : 'white'},
+		        car03 : {brand : 'Volvo', model : 'XC90', color : 'black'}
+		    }">
+				<p>Select a car:</p>
+				<select ng-model="selectedCar1" ng-options="y.brand for (x, y) in cars1">
+				</select>
+				<h1>You selected: {{selectedCar1.brand}}</h1>
+				<h2>Model: {{selectedCar1.model}}</h2>
+				<h3>Color: {{selectedCar1.color}}</h3>
+			</div>
+		</div>
+	</fieldset>
+
+
+	<fieldset>
+		<legend>ng-include</legend>
+
+ 		<div ng-init="templates =
+    		[{ name: 'template1.html', url: 'UX/partials/template1.html'},
+     		{ name: 'template2.html', url: 'UX/partials/template2.html'}]">
+
+			<select ng-model="template" ng-options="t.name for t in templates">
+				<option value="">(blank)</option>
+			</select>
+			url of the template: <code>{{template.url}}</code>
+			<hr/>
+			<div class="slide-animate-container">
+				<div class="slide-animate" ng-include="template.url"></div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Form</legend>
+		<form name="myForm" class="my-form">
+			userType: <input name="input" ng-model="userType" >
+			<span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
+			<code>userType = {{userType}}</code><br>
+			<code>myForm.input.$valid = {{myForm.input.$valid}}</code><br>
+			<code>myForm.input.$error = {{myForm.input.$error}}</code><br>
+			<code>myForm.$valid = {{myForm.$valid}}</code><br>
+			<code>myForm.$error.required = {{!!myForm.$error.required}}</code><br>
+		</form>
+	</fieldset>
+
+	<fieldset>
+		<legend>Tables</legend>
+		<div ng-init="data = {cols:[
+			{'hName': 'Name'},
+			{'hName': 'Country'}
+			],
+		records : [
+			{'Name':'Alfreds Futterkiste','City':'Berlin','Country':'Germany'},
+			{'Name':'Ana Trujillo Emparedados y helados','City':'Mexico D F ','Country':'Mexico'},
+			{'Name':'Antonio Moreno Taquería','City':'Mexico D F ','Country':'Mexico'},
+			{'Name':'Around the Horn','City':'London','Country':'UK'},
+			{'Name':'B s Beverages','City':'London','Country':'UK'},
+			{'Name':'Berglunds snabbkop','City':'Lulea','Country':'Sweden'},
+			{'Name':'Blauer See Delikatessen','City':'Mannheim','Country':'Germany'},
+			{'Name':'Blondel pere et fils','City':'Strasbourg','Country':'France'},
+			{'Name':'Bolido Comidas preparadas','City':'Madrid','Country':'Spain'},
+			{'Name':'Bon app','City':'Marseille','Country':'France'},
+			{'Name':'Bottom-Dollar Marketse','City':'Tsawassen','Country':'Canada'},
+			{'Name':'Cactus Comidas para llevar','City':'Buenos Aires','Country':'Argentina'},
+			{'Name':'Centro comercial Moctezuma','City':'Mexico D F','Country':'Mexico'},
+			{'Name':'Chop-suey Chinese','City':'Bern','Country':'Switzerland'},
+			{'Name':'Comercio Mineiro','City':'Sao Paulo','Country':'Brazil'}
+			]}"> 
+			<table>
+				<tr>
+					<td ng-repeat=" x in data.cols">{{x.hName}}</td>
+				</tr>		
+			  <tr ng-repeat="x in data.records">
+			    <td ng-if="$odd" style="background-color:#f1f1f1">
+			    	{{ x.Name }}
+			    </td>
+			    <td ng-if="$even">
+			    	{{ x.Name }}
+			    </td>
+			    <td ng-if="$odd" style="background-color:#f1f1f1">
+			    	{{ x.Country }}
+			    </td>
+			    <td ng-if="$even">
+			    	{{ x.Country }}
+			    </td>
+			  </tr>
+			</table>
+		</div>
+	</fieldset>
+
+</div>
+
+<div class="col-md-12">
+    <a ng-click="navigate('directive1')">Directive Example1</a> <br />
+    <a ng-click="navigate('directive2')">Directive Example2</a> <br />
+    <a ng-click="navigate('nested')">Nested Controller</a> <br />
+    
+</div>

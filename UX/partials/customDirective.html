@@ -1,0 +1,49 @@
+<div class="form-group" ng-controller="scopeController">
+	<fieldset>
+		<legend>Scope : False</legend>
+		<div>
+		    <h2 ng-click="reverseName()">Hey {{name}}, Click me to reverse your name</h2>
+		    <div my-directive class='directive'></div>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Scope : True</legend>
+		<div>
+	        <h2 ng-click="reverseName()">Hey {{name}}, Click me to reverse your name</h2>
+	        <div my-directive1 class='directive'></div>
+	    </div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Scope : {}</legend>
+		<div>
+	        <h2 ng-click="reverseName()">Hey {{name}}, Click me to reverse your name</h2>
+	        <div my-directive2 class='directive'></div>
+	    </div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Isolate Scope Prefix</legend>
+		<div class="parent">
+	        <div class="line">
+	            Name inside parent scope is: <strong>{{name}}</strong>  
+	            <input type="button" ng-click="reverseName()" value="Reverse name" />
+	        </div> 
+	        <div class="line">
+	            Color inside parent scope is: <strong style="color:{{color}}">{{color|uppercase}}</strong>  
+	            <input type="button" ng-click="randomColor()" value="Randomize color" />
+	        </div>
+	        <div class="directive" my-directive3
+	            name="{{name}}"
+	            color="color"
+	            reverse="reverseName()"
+	        ></div>
+	    </div>
+	</fieldset>
+
+
+	
+
+	 
+</div>
